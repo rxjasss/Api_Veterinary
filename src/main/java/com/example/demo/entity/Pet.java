@@ -13,35 +13,35 @@ public class Pet {
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "id_user")
-	private User id_user; 
-	
+	@JoinColumn(name = "idUser")
+	private User idUser;
+
 	private int age;
 	private String name, animal, breed;
-	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "id_pet")
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "idPet")
 	private Appointment appointment;
 
 	public Pet() {
 		super();
 	}
-	
-	public Pet(int id, User id_user, int age, String name, String animal, String breed) {
+
+	public Pet(int id, User idUser, int age, String name, String animal, String breed) {
 		super();
 		this.id = id;
-		this.id_user = id_user;
+		this.idUser = idUser;
 		this.age = age;
 		this.name = name;
 		this.animal = animal;
 		this.breed = breed;
 	}
 
-	public Pet(int id, User id_user, int age, String name, String animal, String breed, Appointment appointment) {
+	public Pet(int id, User idUser, int age, String name, String animal, String breed, Appointment appointment) {
 		super();
 		this.id = id;
-		this.id_user = id_user;
+		this.idUser = idUser;
 		this.age = age;
 		this.name = name;
 		this.animal = animal;
@@ -57,12 +57,12 @@ public class Pet {
 		this.id = id;
 	}
 
-	public User getId_user() {
-		return id_user;
+	public User getIdUser() {
+		return idUser;
 	}
 
-	public void setId_user(User id_user) {
-		this.id_user = id_user;
+	public void setIdUser(User idUser) {
+		this.idUser = idUser;
 	}
 
 	public int getAge() {
@@ -107,8 +107,8 @@ public class Pet {
 
 	@Override
 	public String toString() {
-		return "Pet [id=" + id + ", id_user=" + id_user + ", age=" + age + ", name=" + name + ", animal=" + animal
+		return "Pet [id=" + id + ", idUser=" + idUser + ", age=" + age + ", name=" + name + ", animal=" + animal
 				+ ", breed=" + breed + ", appointment=" + appointment + "]";
 	}
-	
+
 }

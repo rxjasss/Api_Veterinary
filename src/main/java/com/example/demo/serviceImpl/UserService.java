@@ -1,6 +1,9 @@
 package com.example.demo.serviceImpl;
 
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -27,11 +30,24 @@ public class UserService implements UserDetailsService {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
 	public com.example.demo.entity.User register(com.example.demo.entity.User user) {
 		user.setPassword(passwordEncoder().encode(user.getPassword()));
 		user.setEnabled(false);
-		user.setRole("ROLE_USER");
+		user.setRole("USER");
+		return userRepository.save(user);
+	}
+
+	public com.example.demo.entity.User registerVeterinary(com.example.demo.entity.User user) {
+		List<com.example.demo.entity.User>usuarios=userRepository.findAll();
+        for(com.example.demo.entity.User u: usuarios) {
+            if(u.getUsername().equals(user.getUsername())) {
+                return null;
+            }
+        }
+		user.setPassword(passwordEncoder().encode(user.getPassword()));
+		user.setEnabled(false);
+		user.setRole("VETERINARY");
 		return userRepository.save(user);
 	}
 
@@ -55,4 +71,50 @@ public class UserService implements UserDetailsService {
 	public com.example.demo.entity.User findUser(String username) {
 		return userRepository.findByUsername(username);
 	}
+	
+	public com.example.demo.entity.User findUserId(int id) {
+		return userRepository.findById(id);
+	}
+	
+	public int activate(String username) {
+        int a=0;
+        com.example.demo.entity.User u=userRepository.findByUsername(username);
+        com.example.demo.entity.User user=new com.example.demo.entity.User();
+        user.setPassword(passwordEncoder().encode(u.getPassword()));
+        user.setUsername(u.getUsername());
+        user.setId(u.getId());
+        user.setName(u.getName());
+        user.setSurname(u.getSurname());
+        user.setRole(u.getRole());
+        user.setPetList(u.getPetList());
+        user.setReportList(u.getReportList());
+        
+
+        if(u.isEnabled()==false) {
+            user.setEnabled(true);
+            a=1;
+        }else {
+            user.setEnabled(false);
+            a=0;
+        }
+
+        userRepository.save(user);
+        return a;
+    }
+
+    public void deleteUser(String username) throws Exception {
+        com.example.demo.entity.User u = userRepository.findByUsername(username);
+        userRepository.delete(u);
+    }
+    
+    public com.example.demo.entity.User updateUser(com.example.demo.entity.User user) {
+        return userRepository.save(user);
+    }
+
+    public List<com.example.demo.entity.User> listAllUsers() {
+    	List<com.example.demo.entity.User> usersList= userRepository.findAll().stream().collect(Collectors.toList());
+        List<com.example.demo.entity.User> filteredList= usersList.stream().filter(x->x.getRole().equals("VETERINARY") || x.getRole().equals("USER")).collect(Collectors.toList());
+        return filteredList;
+    }
+
 }

@@ -1,17 +1,17 @@
 package com.example.demo.models;
 
 public class ReportDTO {
-	private int id, id_user;
+	private int id, idUser;
 	private String description;
-	
+
 	public ReportDTO() {
 		super();
 	}
 
-	public ReportDTO(int id, int id_user, String description) {
+	public ReportDTO(int id, int idUser, String description) {
 		super();
 		this.id = id;
-		this.id_user = id_user;
+		this.idUser = idUser;
 		this.description = description;
 	}
 
@@ -23,12 +23,12 @@ public class ReportDTO {
 		this.id = id;
 	}
 
-	public int getId_user() {
-		return id_user;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
 	public String getDescription() {
@@ -41,6 +41,7 @@ public class ReportDTO {
 
 	@Override
 	public String toString() {
-		return "ReportDTO [id=" + id + ", id_user=" + id_user + ", description=" + description + "]";
+		return "ReportDTO [id=" + id + ", idUser=" + idUser + ", description=" + description + "]";
 	}
+
 }

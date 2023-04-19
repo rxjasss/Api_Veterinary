@@ -50,6 +50,11 @@ public class UserController {
 	private User saveUser(@RequestBody User user) {
 		return userService.register(user);
 	}
+	
+	@PostMapping("/update")
+	private User updateUser(@RequestBody User user) {
+		return userService.register(user);
+	}
 
 	private String getJWTToken(String username) {
 		String secretKey = "mySecretKey";

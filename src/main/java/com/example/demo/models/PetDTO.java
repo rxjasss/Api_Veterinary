@@ -1,7 +1,7 @@
 package com.example.demo.models;
 
 public class PetDTO {
-	private int id, id_user;
+	private int id, idUser;
 	private int age;
 	private String name, animal, breed;
 
@@ -9,10 +9,10 @@ public class PetDTO {
 		super();
 	}
 
-	public PetDTO(int id, int id_user, int age, String name, String animal, String breed) {
+	public PetDTO(int id, int idUser, int age, String name, String animal, String breed) {
 		super();
 		this.id = id;
-		this.id_user = id_user;
+		this.idUser = idUser;
 		this.age = age;
 		this.name = name;
 		this.animal = animal;
@@ -27,12 +27,12 @@ public class PetDTO {
 		this.id = id;
 	}
 
-	public int getId_user() {
-		return id_user;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
 	public int getAge() {
@@ -69,7 +69,7 @@ public class PetDTO {
 
 	@Override
 	public String toString() {
-		return "PetDTO [id=" + id + ", id_user=" + id_user + ", age=" + age + ", name=" + name + ", animal=" + animal
+		return "PetDTO [id=" + id + ", idUser=" + idUser + ", age=" + age + ", name=" + name + ", animal=" + animal
 				+ ", breed=" + breed + "]";
 	}
 

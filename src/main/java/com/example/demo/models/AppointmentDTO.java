@@ -3,7 +3,7 @@ package com.example.demo.models;
 import java.util.Date;
 
 public class AppointmentDTO {
-	private int id, id_pet;
+	private int id, iPet, idVeterinary;
 	private String hour;
 	private Date date;
 
@@ -11,10 +11,11 @@ public class AppointmentDTO {
 		super();
 	}
 
-	public AppointmentDTO(int id, int id_pet, String hour, Date date) {
+	public AppointmentDTO(int id, int iPet, int idVeterinary, String hour, Date date) {
 		super();
 		this.id = id;
-		this.id_pet = id_pet;
+		this.iPet = iPet;
+		this.idVeterinary = idVeterinary;
 		this.hour = hour;
 		this.date = date;
 	}
@@ -27,12 +28,20 @@ public class AppointmentDTO {
 		this.id = id;
 	}
 
-	public int getId_pet() {
-		return id_pet;
+	public int getiPet() {
+		return iPet;
 	}
 
-	public void setId_pet(int id_pet) {
-		this.id_pet = id_pet;
+	public void setiPet(int iPet) {
+		this.iPet = iPet;
+	}
+
+	public int getIdVeterinary() {
+		return idVeterinary;
+	}
+
+	public void setIdVeterinary(int idVeterinary) {
+		this.idVeterinary = idVeterinary;
 	}
 
 	public String getHour() {
@@ -53,6 +62,8 @@ public class AppointmentDTO {
 
 	@Override
 	public String toString() {
-		return "AppointmentDTO [id=" + id + ", id_pet=" + id_pet + ", hour=" + hour + ", date=" + date + "]";
+		return "AppointmentDTO [id=" + id + ", iPet=" + iPet + ", idVeterinary=" + idVeterinary + ", hour=" + hour
+				+ ", date=" + date + "]";
 	}
+
 }

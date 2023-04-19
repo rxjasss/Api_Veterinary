@@ -3,6 +3,8 @@ package com.example.demo.models;
 public class User {
 	private int id;
 	private String username;
+	private String name;
+	private String surname;
 	private String password;
 	private boolean enabled;
 	private String role;
@@ -12,10 +14,13 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password, boolean enabled, String role, String token) {
+	public User(int id, String username, String name, String surname, String password, boolean enabled, String role,
+			String token) {
 		super();
 		this.id = id;
 		this.username = username;
+		this.name = name;
+		this.surname = surname;
 		this.password = password;
 		this.enabled = enabled;
 		this.role = role;
@@ -36,6 +41,22 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public String getPassword() {
@@ -72,8 +93,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + ", token=" + token + "]";
+		return "User [id=" + id + ", username=" + username + ", name=" + name + ", surname=" + surname + ", password="
+				+ password + ", enabled=" + enabled + ", role=" + role + ", token=" + token + "]";
 	}
 
 }

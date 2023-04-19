@@ -13,8 +13,8 @@ public class Report {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_user")
-	private User id_user;
+	@JoinColumn(name = "idUser")
+	private User idUser;
 	
 	private String description;
 	
@@ -22,10 +22,10 @@ public class Report {
 		super();
 	}
 
-	public Report(int id, User id_user, String description) {
+	public Report(int id, User idUser, String description) {
 		super();
 		this.id = id;
-		this.id_user = id_user;
+		this.idUser = idUser;
 		this.description = description;
 	}
 
@@ -37,12 +37,12 @@ public class Report {
 		this.id = id;
 	}
 
-	public User getId_user() {
-		return id_user;
+	public User getIdUser() {
+		return idUser;
 	}
 
-	public void setId_user(User id_user) {
-		this.id_user = id_user;
+	public void setIdUser(User idUser) {
+		this.idUser = idUser;
 	}
 
 	public String getDescription() {
@@ -55,7 +55,7 @@ public class Report {
 
 	@Override
 	public String toString() {
-		return "Report [id=" + id + ", id_user=" + id_user + ", description=" + description + "]";
+		return "Report [id=" + id + ", idUser=" + idUser + ", description=" + description + "]";
 	}
 	
 	
