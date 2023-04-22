@@ -35,6 +35,12 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
+	public List<ReportDTO> findReportByIdUser(int idUser) {
+		return reportRepository.findByIdUser(idUser).stream().map(c -> transform(c))
+				.collect(Collectors.toList());
+	}
+	
+	@Override
 	public boolean removeAppointment(int id) {
 		if (reportRepository.findById(id) != null) {
 			reportRepository.deleteById(id);
@@ -54,5 +60,6 @@ public class ReportServiceImpl implements ReportService {
 		ModelMapper modelMapper = new ModelMapper();
 		return modelMapper.map(report, ReportDTO.class);
 	}
+
 
 }
