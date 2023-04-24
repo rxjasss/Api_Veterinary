@@ -6,12 +6,14 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Report;
 import com.example.demo.models.ReportDTO;
 import com.example.demo.repository.ReportRepository;
 import com.example.demo.service.ReportService;
 
+@Service("reportService")
 public class ReportServiceImpl implements ReportService {
 
 	@Autowired

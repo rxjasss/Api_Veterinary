@@ -6,12 +6,14 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Pet;
 import com.example.demo.models.PetDTO;
 import com.example.demo.repository.PetRepository;
 import com.example.demo.service.PetService;
 
+@Service("petService")
 public class PetServiceImpl implements PetService{
 
 	@Autowired
