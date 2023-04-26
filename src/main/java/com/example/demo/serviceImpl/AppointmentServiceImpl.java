@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Appointment;
+import com.example.demo.entity.User;
 import com.example.demo.models.AppointmentDTO;
 import com.example.demo.repository.AppointmentRepository;
 import com.example.demo.service.AppointmentService;
@@ -19,6 +20,10 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Autowired
 	@Qualifier("appointmentRepository")
 	private AppointmentRepository appointmentRepository;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
 
 	@Override
 	public AppointmentDTO addAppointment(AppointmentDTO appointmentDTO) {
@@ -38,7 +43,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	public List<AppointmentDTO> findAppointmentByIdVeterinary(int idVeterinary) {
-		return appointmentRepository.findByIdVeterinary(idVeterinary).stream().map(c -> transform(c))
+		User u = userService.findUserId(idVeterinary);
+		return appointmentRepository.findByIdVeterinary(u).stream().map(c -> transform(c))
 				.collect(Collectors.toList());
 	}
 

@@ -40,7 +40,7 @@ public class RestAppointment {
     }
 	
 	//Lista todas las citas de un veterinario
-	@GetMapping("/veterinary/appointments{idVeterinary}")
+	@GetMapping("/veterinary/appointments/{idVeterinary}")
     public ResponseEntity<?> getAppointmentsVeterinary(@PathVariable int idVeterinary) {
 		boolean exist = appointmentService.findAppointmentByIdVeterinary(idVeterinary)!=null;
 		if(exist) {
