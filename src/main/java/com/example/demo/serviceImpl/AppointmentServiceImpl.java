@@ -44,7 +44,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Override
 	public List<AppointmentDTO> findAppointmentByIdVeterinary(int idVeterinary) {
 		User u = userService.findUserId(idVeterinary);
-		return appointmentRepository.findByIdVeterinary(u).stream().map(c -> transform(c))
+		return appointmentRepository.findByIdUser(u).stream().map(c -> transform(c))
 				.collect(Collectors.toList());
 	}
 

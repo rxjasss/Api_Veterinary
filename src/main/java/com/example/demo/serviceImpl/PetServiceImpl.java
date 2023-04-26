@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Pet;
+import com.example.demo.entity.User;
 import com.example.demo.models.PetDTO;
 import com.example.demo.repository.PetRepository;
 import com.example.demo.service.PetService;
@@ -19,6 +20,10 @@ public class PetServiceImpl implements PetService{
 	@Autowired
 	@Qualifier("petRepository")
 	private PetRepository petRepository;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
 	
 	@Override
 	public PetDTO addPet(PetDTO petDTO) {
@@ -38,7 +43,8 @@ public class PetServiceImpl implements PetService{
 
 	@Override
 	public List<PetDTO> findPetByIdUser(int idUser) {
-		return petRepository.findByIdUser(idUser).stream().map(c -> transform(c))
+		User u = userService.findUserId(idUser);
+		return petRepository.findByIdUser(u).stream().map(c -> transform(c))
 				.collect(Collectors.toList());
 	}
 

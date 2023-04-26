@@ -7,7 +7,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Appointment {
@@ -15,13 +14,13 @@ public class Appointment {
 	@GeneratedValue
 	private int id;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idPet")
 	private Pet idPet;
 
 	@ManyToOne
-	@JoinColumn(name = "idVeterinary")
-	private User idVeterinary;
+	@JoinColumn(name = "idUser")
+	private User idUser;
 
 	private String hour;
 	private Date date;
@@ -30,11 +29,11 @@ public class Appointment {
 		super();
 	}
 
-	public Appointment(int id, Pet idPet, User idVeterinary, String hour, Date date) {
+	public Appointment(int id, Pet idPet, User idUser, String hour, Date date) {
 		super();
 		this.id = id;
 		this.idPet = idPet;
-		this.idVeterinary = idVeterinary;
+		this.idUser = idUser;
 		this.hour = hour;
 		this.date = date;
 	}
@@ -55,12 +54,12 @@ public class Appointment {
 		this.idPet = idPet;
 	}
 
-	public User getIdVeterinary() {
-		return idVeterinary;
+	public User getIdUser() {
+		return idUser;
 	}
 
-	public void setIdVeterinary(User idVeterinary) {
-		this.idVeterinary = idVeterinary;
+	public void setIdUser(User idUser) {
+		this.idUser = idUser;
 	}
 
 	public String getHour() {
@@ -81,8 +80,8 @@ public class Appointment {
 
 	@Override
 	public String toString() {
-		return "Appointment [id=" + id + ", idPet=" + idPet + ", idVeterinary=" + idVeterinary + ", hour=" + hour
-				+ ", date=" + date + "]";
+		return "Appointment [id=" + id + ", idPet=" + idPet + ", idUser=" + idUser + ", hour=" + hour + ", date=" + date
+				+ "]";
 	}
 
 }

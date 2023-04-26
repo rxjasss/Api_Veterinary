@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,11 +26,17 @@ public class User {
 	private String role;
 	private String token;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
 	private List<Pet> petList;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
 	private List<Report> reportList;
+	
+	@JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
+    private List<Appointment> appointmentsList;
 
 	public User() {
 		super();

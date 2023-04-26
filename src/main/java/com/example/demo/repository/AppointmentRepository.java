@@ -12,6 +12,6 @@ import com.example.demo.entity.User;
 @Repository("appointmentRepository")
 public interface AppointmentRepository extends JpaRepository<Appointment, Serializable> {
 	public abstract Appointment findById(int id);
-	public abstract List<Appointment> findByIdVeterinary(User veterinary);
+	public abstract List<Appointment> findByIdUser(User veterinary);
 
 }

@@ -1,12 +1,16 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Pet {
@@ -21,24 +25,15 @@ public class Pet {
 	private int age;
 	private String name, animal, breed;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "idPet")
-	private Appointment appointment;
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idPet")
+	private List<Appointment> appointment;
 
 	public Pet() {
 		super();
 	}
 
-	public Pet(int id, User idUser, int age, String name, String animal, String breed) {
-		super();
-		this.id = id;
-		this.idUser = idUser;
-		this.age = age;
-		this.name = name;
-		this.animal = animal;
-		this.breed = breed;
-	}
-
-	public Pet(int id, User idUser, int age, String name, String animal, String breed, Appointment appointment) {
+	public Pet(int id, User idUser, int age, String name, String animal, String breed, List<Appointment> appointment) {
 		super();
 		this.id = id;
 		this.idUser = idUser;
@@ -97,11 +92,11 @@ public class Pet {
 		this.breed = breed;
 	}
 
-	public Appointment getAppointment() {
+	public List<Appointment> getAppointment() {
 		return appointment;
 	}
 
-	public void setAppointment(Appointment appointment) {
+	public void setAppointment(List<Appointment> appointment) {
 		this.appointment = appointment;
 	}
 
