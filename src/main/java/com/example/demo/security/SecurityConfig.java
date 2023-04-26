@@ -18,9 +18,9 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable().addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-				.authorizeHttpRequests((requests) -> requests.requestMatchers("/users/listUsers").hasRole("ADMIN")
-						.requestMatchers("/api/admin/**").hasRole("ADMIN").requestMatchers("/api/user/**")
-						.hasRole("USER").requestMatchers("/api/all/**").hasAnyRole("ADMIN", "USER")
+				.authorizeHttpRequests((requests) -> requests.requestMatchers("/api/admin/**").hasRole("ADMIN")
+						.requestMatchers("/api/user/**").hasRole("USER").requestMatchers("/api/veterinary/**")
+						.hasRole("VETERINARY").requestMatchers("/api/all/**").hasAnyRole("ADMIN", "USER", "VETERINARY")
 						.requestMatchers("/**").permitAll().anyRequest().authenticated())
 				.formLogin((form) -> form.loginPage("/auth/login").defaultSuccessUrl("/users/listUsers").permitAll())
 				.logout((logout) -> logout.permitAll().logoutUrl("/auth/logout")
