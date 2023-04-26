@@ -50,7 +50,7 @@ public class RestPet {
 	}
 
 	// Crea una mascota
-	@PostMapping("/veterinaty/pet")
+	@PostMapping("/veterinary/pet")
 	public ResponseEntity<?> insertPetNew(@RequestBody PetDTO petDTO) {
 		petService.addPet(petDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(petDTO);
