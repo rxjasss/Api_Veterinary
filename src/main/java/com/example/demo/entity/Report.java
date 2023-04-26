@@ -16,6 +16,10 @@ public class Report {
 	@JoinColumn(name = "idUser")
 	private User idUser;
 	
+	@ManyToOne
+	@JoinColumn(name = "idVeterinary")
+	private User idVeterinary;
+	
 	private String description;
 	
 	public Report() {

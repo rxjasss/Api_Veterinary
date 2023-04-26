@@ -37,6 +37,10 @@ public class User {
 	@JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
     private List<Appointment> appointmentsList;
+	
+	@JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVeterinary")
+    private List<Report> reportsListVeterinary;
 
 	public User() {
 		super();

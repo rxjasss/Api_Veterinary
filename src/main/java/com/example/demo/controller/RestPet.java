@@ -39,7 +39,7 @@ public class RestPet {
 	}
 
 	// Lista todas las mascotas de un user
-	@GetMapping("/user/pets{idUser}")
+	@GetMapping("/user/pets/{idUser}")
 	public ResponseEntity<?> getPetsUser(@PathVariable int idUser) {
 		boolean exist = petService.findPetByIdUser(idUser) != null;
 		if (exist) {

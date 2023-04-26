@@ -46,6 +46,17 @@ public class RestReport {
 		} else
 			return ResponseEntity.noContent().build();
 	}
+	
+	// Lista todas los mensajes de un veterinario
+		@GetMapping("/user/reports{idVeterinary}")
+		public ResponseEntity<?> getReportsVeterinary(@PathVariable int idVeterinary) {
+			boolean exist = reportService.findReportByIdUser(idVeterinary) != null;
+			if (exist) {
+				List<ReportDTO> pets = reportService.findReportByIdUser(idVeterinary);
+				return ResponseEntity.ok(pets);
+			} else
+				return ResponseEntity.noContent().build();
+		}
 
 	// Crea un mensaje
 	@PostMapping("/veterinaty/report")
