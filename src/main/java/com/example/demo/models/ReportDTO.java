@@ -1,17 +1,18 @@
 package com.example.demo.models;
 
 public class ReportDTO {
-	private int id, idUser;
+	private int id, idUser, idVeterinary;
 	private String description;
 
 	public ReportDTO() {
 		super();
 	}
 
-	public ReportDTO(int id, int idUser, String description) {
+	public ReportDTO(int id, int idUser, int idVeterinary, String description) {
 		super();
 		this.id = id;
 		this.idUser = idUser;
+		this.idVeterinary = idVeterinary;
 		this.description = description;
 	}
 
@@ -31,6 +32,14 @@ public class ReportDTO {
 		this.idUser = idUser;
 	}
 
+	public int getIdVeterinary() {
+		return idVeterinary;
+	}
+
+	public void setIdVeterinary(int idVeterinary) {
+		this.idVeterinary = idVeterinary;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -41,7 +50,8 @@ public class ReportDTO {
 
 	@Override
 	public String toString() {
-		return "ReportDTO [id=" + id + ", idUser=" + idUser + ", description=" + description + "]";
+		return "ReportDTO [id=" + id + ", idUser=" + idUser + ", idVeterinary=" + idVeterinary + ", description="
+				+ description + "]";
 	}
 
 }

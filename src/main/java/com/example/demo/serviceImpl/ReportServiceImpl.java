@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Report;
+import com.example.demo.entity.User;
 import com.example.demo.models.ReportDTO;
 import com.example.demo.repository.ReportRepository;
 import com.example.demo.service.ReportService;
@@ -19,6 +20,10 @@ public class ReportServiceImpl implements ReportService {
 	@Autowired
 	@Qualifier("reportRepository")
 	private ReportRepository reportRepository;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
 
 	@Override
 	public ReportDTO addReport(ReportDTO reportDTO) {
@@ -38,17 +43,9 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public List<ReportDTO> findReportByIdUser(int idUser) {
-		return reportRepository.findByIdUser(idUser).stream().map(c -> transform(c))
+		User u = userService.findUserId(idUser);
+		return reportRepository.findByIdUser(u).stream().map(c -> transform(c))
 				.collect(Collectors.toList());
-	}
-	
-	@Override
-	public boolean removeAppointment(int id) {
-		if (reportRepository.findById(id) != null) {
-			reportRepository.deleteById(id);
-			return true;
-		} else
-			return false;
 	}
 
 	@Override
@@ -61,6 +58,13 @@ public class ReportServiceImpl implements ReportService {
 	public ReportDTO transform(Report report) {
 		ModelMapper modelMapper = new ModelMapper();
 		return modelMapper.map(report, ReportDTO.class);
+	}
+
+	@Override
+	public List<ReportDTO> findReportByIdVeterinary(int idVeterinary) {
+		User v = userService.findUserId(idVeterinary);
+		return reportRepository.findByIdVeterinary(v).stream().map(c -> transform(c))
+				.collect(Collectors.toList());
 	}
 
 

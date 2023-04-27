@@ -11,7 +11,7 @@ public interface ReportService {
 	public abstract List<ReportDTO> listAllReports();
 	public abstract Report findReportById(int id);
 	public abstract List<ReportDTO> findReportByIdUser(int idUser);
-	public abstract boolean removeAppointment(int id);
+	public abstract List<ReportDTO> findReportByIdVeterinary(int idVeterinary);
 	public abstract Report transform(ReportDTO reportDTO);
 	public abstract ReportDTO transform(Report report);
 }

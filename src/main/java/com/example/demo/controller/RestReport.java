@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.models.PetDTO;
 import com.example.demo.models.ReportDTO;
 import com.example.demo.service.ReportService;
 
@@ -50,16 +49,16 @@ public class RestReport {
 	// Lista todas los mensajes de un veterinario
 		@GetMapping("/user/reports{idVeterinary}")
 		public ResponseEntity<?> getReportsVeterinary(@PathVariable int idVeterinary) {
-			boolean exist = reportService.findReportByIdUser(idVeterinary) != null;
+			boolean exist = reportService.findReportByIdVeterinary(idVeterinary) != null;
 			if (exist) {
-				List<ReportDTO> pets = reportService.findReportByIdUser(idVeterinary);
+				List<ReportDTO> pets = reportService.findReportByIdVeterinary(idVeterinary);
 				return ResponseEntity.ok(pets);
 			} else
 				return ResponseEntity.noContent().build();
 		}
 
 	// Crea un mensaje
-	@PostMapping("/veterinaty/report")
+	@PostMapping("/veterinary/report")
 	public ResponseEntity<?> insertReportNew(@RequestBody ReportDTO reportDTO) {
 		reportService.addReport(reportDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(reportDTO);
