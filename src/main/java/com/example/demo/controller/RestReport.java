@@ -36,7 +36,7 @@ public class RestReport {
 	}
 
 	// Lista todas los mensajes de un user
-	@GetMapping("/user/reports{idUser}")
+	@GetMapping("/user/reports/{idUser}")
 	public ResponseEntity<?> getReportsUser(@PathVariable int idUser) {
 		boolean exist = reportService.findReportByIdUser(idUser) != null;
 		if (exist) {
@@ -47,7 +47,7 @@ public class RestReport {
 	}
 	
 	// Lista todas los mensajes de un veterinario
-		@GetMapping("/user/reports{idVeterinary}")
+		@GetMapping("/veterinary/reports/{idVeterinary}")
 		public ResponseEntity<?> getReportsVeterinary(@PathVariable int idVeterinary) {
 			boolean exist = reportService.findReportByIdVeterinary(idVeterinary) != null;
 			if (exist) {

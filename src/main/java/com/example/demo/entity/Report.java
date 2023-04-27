@@ -11,25 +11,26 @@ public class Report {
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idUser")
 	private User idUser;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idVeterinary")
 	private User idVeterinary;
-	
+
 	private String description;
-	
+
 	public Report() {
 		super();
 	}
 
-	public Report(int id, User idUser, String description) {
+	public Report(int id, User idUser, User idVeterinary, String description) {
 		super();
 		this.id = id;
 		this.idUser = idUser;
+		this.idVeterinary = idVeterinary;
 		this.description = description;
 	}
 
@@ -49,6 +50,14 @@ public class Report {
 		this.idUser = idUser;
 	}
 
+	public User getIdVeterinary() {
+		return idVeterinary;
+	}
+
+	public void setIdVeterinary(User idVeterinary) {
+		this.idVeterinary = idVeterinary;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -59,8 +68,8 @@ public class Report {
 
 	@Override
 	public String toString() {
-		return "Report [id=" + id + ", idUser=" + idUser + ", description=" + description + "]";
+		return "Report [id=" + id + ", idUser=" + idUser + ", idVeterinary=" + idVeterinary + ", description="
+				+ description + "]";
 	}
-	
-	
+
 }
