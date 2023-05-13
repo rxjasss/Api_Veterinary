@@ -62,7 +62,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/all/update")
-    public ResponseEntity<?> updateAppointmentNew (@RequestBody User user)
+    public ResponseEntity<?> updateUserNew (@RequestBody User user)
     {
         userService.register(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
