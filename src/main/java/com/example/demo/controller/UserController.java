@@ -15,6 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -56,15 +57,10 @@ public class UserController {
 		return userService.register(user);
 	}
 	
-	@PostMapping("/update")
-	private User updateUser(@RequestBody User user) {
-		return userService.register(user);
-	}
-	
 	@PutMapping("/all/update")
     public ResponseEntity<?> updateUserNew (@RequestBody User user)
     {
-        userService.register(user);
+        userService.registerUpdate(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 	

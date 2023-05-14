@@ -37,6 +37,13 @@ public class UserService implements UserDetailsService {
 		user.setRole("ROLE_USER");
 		return userRepository.save(user);
 	}
+	
+	public com.example.demo.entity.User registerUpdate(com.example.demo.entity.User user) {
+		user.setPassword(passwordEncoder().encode(user.getPassword()));
+		user.setEnabled(true);
+		user.setRole("ROLE_USER");
+		return userRepository.save(user);
+	}
 
 	public com.example.demo.entity.User registerVeterinary(com.example.demo.entity.User user) {
 		List<com.example.demo.entity.User>usuarios=userRepository.findAll();
