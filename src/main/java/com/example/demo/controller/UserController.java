@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.User;
+import com.example.demo.models.ReportDTO;
 import com.example.demo.serviceImpl.UserService;
 
 import io.jsonwebtoken.Jwts;
@@ -74,7 +75,27 @@ public class UserController {
         else
             return ResponseEntity.noContent().build();
     }
-
+    
+    @GetMapping("/all/veterinarys")
+	public ResponseEntity<?> getVeterinarys() {
+		boolean exist = userService.listVeterinarys() != null;
+		if (exist) {
+			List<User> veterinarys = userService.listVeterinarys();
+			return ResponseEntity.ok(veterinarys);
+		} else
+			return ResponseEntity.noContent().build();
+	}
+    
+    @GetMapping("/all/users")
+	public ResponseEntity<?> getUsers() {
+		boolean exist = userService.listUsers() != null;
+		if (exist) {
+			List<User> users = userService.listUsers();
+			return ResponseEntity.ok(users);
+		} else
+			return ResponseEntity.noContent().build();
+	}
+    
 	private String getJWTToken(String username) {
 		String secretKey = "mySecretKey";
 		com.example.demo.entity.User u=userService.findUser(username);
