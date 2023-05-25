@@ -57,7 +57,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Override
 	public List<AppointmentDTO> findAppointmentByIdPet(int idPet) {
 		Pet p = petService.findPetById(idPet);
-		System.out.println(p);
 		return appointmentRepository.findByIdPet(p).stream().map(c -> transform(c))
 				.collect(Collectors.toList());
 	}
