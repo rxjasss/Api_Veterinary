@@ -17,56 +17,63 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.models.AppointmentDTO;
 import com.example.demo.service.AppointmentService;
 
-
 @RestController
 @RequestMapping("/api")
 public class RestAppointment {
-	
+
 	@Autowired
-    @Qualifier("appointmentService")
-    private AppointmentService appointmentService;
-	
-	
-	//Lista todas las citas
+	@Qualifier("appointmentService")
+	private AppointmentService appointmentService;
+
+	// Lista todas las citas
 	@GetMapping("/all/appointments")
-    public ResponseEntity<?> getAppointments() {
-        boolean exist = appointmentService.listAllAppointments()!=null;
-        if(exist) {
-            List<AppointmentDTO> appointments=appointmentService.listAllAppointments();
-            return ResponseEntity.ok(appointments);
-        }
-        else
-            return ResponseEntity.noContent().build();
-    }
-	
-	//Lista todas las citas de un veterinario
-	@GetMapping("/veterinary/appointments/{idVeterinary}")
-    public ResponseEntity<?> getAppointmentsVeterinary(@PathVariable int idVeterinary) {
-		boolean exist = appointmentService.findAppointmentByIdVeterinary(idVeterinary)!=null;
-		if(exist) {
-			List<AppointmentDTO> appointments=appointmentService.findAppointmentByIdVeterinary(idVeterinary);
+	public ResponseEntity<?> getAppointments() {
+		boolean exist = appointmentService.listAllAppointments() != null;
+		if (exist) {
+			List<AppointmentDTO> appointments = appointmentService.listAllAppointments();
 			return ResponseEntity.ok(appointments);
-		}
-		else
+		} else
 			return ResponseEntity.noContent().build();
-    }
-	
-	//Crea una cita
-	@PostMapping("/user/appointment")
-	public ResponseEntity<?> insertAppointmentNew (@RequestBody AppointmentDTO appointmentDTO){
-		appointmentService.addAppointment(appointmentDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(appointmentDTO);
+	}
+
+	// Lista todas las citas de un veterinario
+	@GetMapping("/veterinary/appointments/{idVeterinary}")
+	public ResponseEntity<?> getAppointmentsVeterinary(@PathVariable int idVeterinary) {
+		boolean exist = appointmentService.findAppointmentByIdVeterinary(idVeterinary) != null;
+		if (exist) {
+			List<AppointmentDTO> appointments = appointmentService.findAppointmentByIdVeterinary(idVeterinary);
+			return ResponseEntity.ok(appointments);
+		} else
+			return ResponseEntity.noContent().build();
+	}
+
+	// Lista todas las citas de una mascota
+	@GetMapping("/user/appointments/{idPet}")
+	public ResponseEntity<?> getAppointmentPet(@PathVariable int idPet) {
+		boolean exist = appointmentService.findAppointmentByIdVeterinary(idPet) != null;
+		if (exist) {
+			List<AppointmentDTO> appointments = appointmentService.findAppointmentByIdPet(idPet);
+			return ResponseEntity.ok(appointments);
+		} else
+			return ResponseEntity.noContent().build();
 	}
 	
-	//Elimina una cita
+
+	// Crea una cita
+	@PostMapping("/user/appointment")
+	public ResponseEntity<?> insertAppointmentNew(@RequestBody AppointmentDTO appointmentDTO) {
+		appointmentService.addAppointment(appointmentDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(appointmentDTO);
+	}
+
+	// Elimina una cita
 	@DeleteMapping("/all/appointment/{idAppointment}")
-	public ResponseEntity<?> deleteAppointment(@PathVariable int idAppointment)
-	{
+	public ResponseEntity<?> deleteAppointment(@PathVariable int idAppointment) {
 		boolean exists = appointmentService.removeAppointment(idAppointment);
-		if(exists)
+		if (exists)
 			return ResponseEntity.ok().build();
 		else
 			return ResponseEntity.noContent().build();
 	}
-	
+
 }

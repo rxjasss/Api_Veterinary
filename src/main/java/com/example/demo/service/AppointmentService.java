@@ -11,6 +11,7 @@ public interface AppointmentService {
 	public abstract List<AppointmentDTO> listAllAppointments();
 	public abstract Appointment findAppointmentById(int id);
 	public abstract List<AppointmentDTO> findAppointmentByIdVeterinary(int idVeterinary);
+	public abstract List<AppointmentDTO> findAppointmentByIdPet(int idPet);
 	public abstract boolean removeAppointment(int id);
 	public abstract Appointment transform(AppointmentDTO appointmentDTO);
 	public abstract AppointmentDTO transform(Appointment appointment);

@@ -126,13 +126,13 @@ public class UserService implements UserDetailsService {
     
     public List<com.example.demo.entity.User> listVeterinarys() {
     	List<com.example.demo.entity.User> usersList= userRepository.findAll().stream().collect(Collectors.toList());
-        List<com.example.demo.entity.User> filteredList= usersList.stream().filter(x->x.getRole().equals("VETERINARY")).collect(Collectors.toList());
+        List<com.example.demo.entity.User> filteredList= usersList.stream().filter(x->x.getRole().equals("ROLE_VETERINARY")).collect(Collectors.toList());
         return filteredList;
     }
 
     public List<com.example.demo.entity.User> listUsers() {
     	List<com.example.demo.entity.User> usersList= userRepository.findAll().stream().collect(Collectors.toList());
-        List<com.example.demo.entity.User> filteredList= usersList.stream().filter(x->x.getRole().equals("USER")).collect(Collectors.toList());
+        List<com.example.demo.entity.User> filteredList= usersList.stream().filter(x->x.getRole().equals("ROLE_USER")).collect(Collectors.toList());
         return filteredList;
     }
 }

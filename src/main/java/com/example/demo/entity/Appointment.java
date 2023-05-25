@@ -78,10 +78,5 @@ public class Appointment {
 		this.date = date;
 	}
 
-	@Override
-	public String toString() {
-		return "Appointment [id=" + id + ", idPet=" + idPet + ", idUser=" + idUser + ", hour=" + hour + ", date=" + date
-				+ "]";
-	}
 
 }

@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Appointment;
+import com.example.demo.entity.Pet;
 import com.example.demo.entity.User;
 import com.example.demo.models.AppointmentDTO;
 import com.example.demo.repository.AppointmentRepository;
 import com.example.demo.service.AppointmentService;
+import com.example.demo.service.PetService;
 
 @Service("appointmentService")
 public class AppointmentServiceImpl implements AppointmentService {
@@ -24,6 +26,10 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Autowired
 	@Qualifier("userService")
 	private UserService userService;
+	
+	@Autowired
+	@Qualifier("petService")
+	private PetService petService;
 
 	@Override
 	public AppointmentDTO addAppointment(AppointmentDTO appointmentDTO) {
@@ -47,6 +53,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return appointmentRepository.findByIdUser(u).stream().map(c -> transform(c))
 				.collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<AppointmentDTO> findAppointmentByIdPet(int idPet) {
+		Pet p = petService.findPetById(idPet);
+		System.out.println(p);
+		return appointmentRepository.findByIdPet(p).stream().map(c -> transform(c))
+				.collect(Collectors.toList());
+	}
 
 	@Override
 	public boolean removeAppointment(int id) {
@@ -68,5 +82,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		ModelMapper modelMapper = new ModelMapper();
 		return modelMapper.map(appointment, AppointmentDTO.class);
 	}
+
+	
 
 }

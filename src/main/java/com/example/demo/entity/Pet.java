@@ -100,10 +100,5 @@ public class Pet {
 		this.appointment = appointment;
 	}
 
-	@Override
-	public String toString() {
-		return "Pet [id=" + id + ", idUser=" + idUser + ", age=" + age + ", name=" + name + ", animal=" + animal
-				+ ", breed=" + breed + ", appointment=" + appointment + "]";
-	}
 
 }
