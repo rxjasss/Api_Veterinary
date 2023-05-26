@@ -50,7 +50,7 @@ public class RestAppointment {
 	// Lista todas las citas de una mascota
 	@GetMapping("/user/appointments/{idPet}")
 	public ResponseEntity<?> getAppointmentPet(@PathVariable int idPet) {
-		boolean exist = appointmentService.findAppointmentByIdVeterinary(idPet) != null;
+		boolean exist = appointmentService.findAppointmentByIdPet(idPet) != null;
 		if (exist) {
 			List<AppointmentDTO> appointments = appointmentService.findAppointmentByIdPet(idPet);
 			return ResponseEntity.ok(appointments);
